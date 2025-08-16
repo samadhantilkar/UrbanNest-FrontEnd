@@ -18,10 +18,14 @@ function LocationInput({form}){
         setIsPopOverOpen(false); 
     }
 
+    function handleKeyDown(e){
+
+    }
+
     return (
         <Popover open={isPopOverOpen} onOpenChange={setIsPopOverOpen}>
             <PopoverTrigger asChild >
-                <div className="flex gap-2 items-center px-4 py-2 rounded bg-background lg:min-w-[360px]">
+                <div className="flex gap-2 items-center px-4 py-2 rounded bg-background lg:min-w-[360px] h-full">
                     <Icon className="text-muted-foreground shrink-0" icon="bed" size="24"/>
                     <FormField control={form.control}
                     name="city"
@@ -30,7 +34,10 @@ function LocationInput({form}){
                             <Input className="w-full h-full px-2 text-sm border-0 
                             focus-visible:ring-transparent focus-visible:ring-offset-transparent placeholder:font-normal  
                             placeholder:text-foreground focus:placeholder-muted-foreground" 
-                            placeholder="Where are you going?" {...field} />
+                            placeholder="Where are you going?" {...field}
+                            autoComplete="off"
+                            // onKeyDown={handleKeyDown}
+                            />
                         </FormControl>
                     )
                         

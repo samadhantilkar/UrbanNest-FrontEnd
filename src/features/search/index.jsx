@@ -4,12 +4,18 @@ import LocationInput from "./location-input";
 import DateSelectInput from "./date-select-input";
 import OccupancyInput from "./occupancy-input";
 import { Button } from "@/components/ui/button";
+import dayjs from "dayjs";
 
 function Search(){
 
     const form=useForm({
         defaultValues:{
-            city:" "
+            city:" ",
+            roomsCount:1,
+            bookingDates:{
+                from:dayjs().toDate(),
+                to: dayjs().add(1,"day").toDate()
+            }
         }
     });
 

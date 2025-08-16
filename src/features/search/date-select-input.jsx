@@ -11,8 +11,8 @@ function DateSelectInput({form}){
             name="bookingDates"
             render={({field})=>(
                 <>
-                    <PopoverTrigger>
-                        <FormItem className="px-4 py-2 rounded bg-background h-full lg:min-w-[300px] lg:flex-auto">
+                    <PopoverTrigger asChild>
+                        <FormItem className="px-4 py-2 rounded bg-background h-full lg:min-w-[300px] lg:flex-auto ">
                             <FormControl >
                                 <div role="button" className="flex items-center h-full">
                                     <Icon icon="calendar" size="24" className="text-muted-foreground shrink-0"/>
@@ -30,13 +30,23 @@ function DateSelectInput({form}){
                         </FormItem>
                     </PopoverTrigger>
 
-                    <PopoverContent sideOffset="1" align="start" className="w-[600px]" onOpenAutoFocus={(e) =>e.preventDefault()}>
-                        <Calendar required mode="range"/>
+                    <PopoverContent sideOffset="1" align="start" className="w-[640px]" onOpenAutoFocus={(e) =>e.preventDefault()}>
+                        <Calendar 
+                            required 
+                            mode="range" 
+                            min={2}  
+                            selected={field.value} 
+                            fromMonth={new Date()} 
+                            disable={(date)=>dayjs().isAfter(dayjs(date),"date")}
+                            numberOfMonths={2}    
+                            onSelect={(value)=>{
+                                field.onChange(value);
+                            }}  
+                    />
                     </PopoverContent>
                 </>
             )}
             />
-
         </Popover>
     )
 }
